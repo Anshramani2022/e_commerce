@@ -12,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BgWidget(
         child: Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           children: [
