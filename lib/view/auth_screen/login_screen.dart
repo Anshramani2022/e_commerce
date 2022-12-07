@@ -2,7 +2,7 @@ import 'package:emart_app/Widget_common/bg_widget.dart';
 import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/auth_screen/signup_Screen.dart';
-import 'package:emart_app/view/home_Screen/home_screen.dart';
+import 'package:emart_app/view/home_Screen/home.dart';
 import 'package:get/get.dart';
 
 import '../../Widget_common/commonButton.dart';
@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                         title: login,
                         color: redColor,
                         onPress: () {
-                          Get.to(() => HomeScreen());
+                          Get.to(() => Home());
                         },
                         textColor: whiteColor)
                     .box
