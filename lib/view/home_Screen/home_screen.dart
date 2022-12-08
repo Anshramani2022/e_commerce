@@ -1,6 +1,8 @@
 import 'package:emart_app/Widget_common/home_button.dart';
 import 'package:emart_app/consts/consts.dart';
 
+import 'component/featured_component.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -24,14 +26,14 @@ class HomeScreen extends StatelessWidget {
                     suffixIcon: Icon(Icons.search),
                     filled: true,
                     fillColor: whiteColor,
-                    hintText: searchanything,
+                    hintText: searchAnything,
                     hintStyle: TextStyle(color: textfieldGrey)),
               ),
             ),
             10.heightBox,
             Expanded(
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     VxSwiper.builder(
@@ -59,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                               width: context.screenWidth / 2.5,
                               height: context.screenHeight * 0.15,
                               icon: index == 0 ? icTodaysDeal : icFlashDeal,
-                              title: index == 0 ? todayDeal : flashsale),
+                              title: index == 0 ? todayDeal : flashSale),
                         )),
                     10.heightBox,
                     VxSwiper.builder(
@@ -92,19 +94,39 @@ class HomeScreen extends StatelessWidget {
                                       ? icBrands
                                       : icTopSeller,
                               title: index == 0
-                                  ? topcategories
+                                  ? topCategories
                                   : index == 1
                                       ? brand
                                       : topSeller),
                         )),
-                    10.heightBox,
+                    20.heightBox,
                     Align(
                         alignment: Alignment.centerLeft,
-                        child: featuredcategories.text
+                        child: featuredCategories.text
                             .color(darkFontGrey)
                             .size(22)
                             .fontFamily(semibold)
-                            .make())
+                            .make()),
+                    10.heightBox,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: List.generate(
+                            3,
+                            (index) => Column(
+                                  children: [
+                                    featuredButton(
+                                        icon: featuredImg1[index],
+                                        title: featuredTitle1[index]),
+                                    10.heightBox,
+                                    featuredButton(
+                                        icon: featuredImg2[index],
+                                        title: featuredTitle2[index]),
+                                  ],
+                                )).toList(),
+                      ),
+                    ),
+                    10.heightBox,
                   ],
                 ),
               ),

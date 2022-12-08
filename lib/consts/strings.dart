@@ -18,10 +18,16 @@ const termAndCondition = "Term And Condition";
 
 const home = "Home", category = "Category", cart = "Cart", account = "Account";
 
-const searchanything = "Search Anything",
+const searchAnything = "Search Anything",
     todayDeal = "Today's deal",
-    flashsale = "Flash Sale",
+    flashSale = "Flash Sale",
     topSeller = "Top Sellar",
     brand = "Brand",
-    topcategories = "Top Categories",
-    featuredcategories = "Featured Categories";
+    topCategories = "Top Categories",
+    womenDress = "Women Dresses",
+    girlsWatches = "Girls Watch",
+    tShirt = "T-Shirt",
+    mobilePhone = "Mobile Phone",
+    boysGlasses = "Boy Glasses",
+    girlDresses = "Girls Dresses",
+    featuredCategories = "Featured Categories";
