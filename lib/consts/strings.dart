@@ -30,4 +30,5 @@ const searchAnything = "Search Anything",
     mobilePhone = "Mobile Phone",
     boysGlasses = "Boy Glasses",
     girlDresses = "Girls Dresses",
+    featuredProduct = "Featured Product",
     featuredCategories = "Featured Categories";
