@@ -1,5 +1,12 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var currentNavIndex = 0.obs;
+  int _currentNavIndex = 0;
+
+  int get currentNavIndex => _currentNavIndex;
+
+  void setBottomIndex(int val) {
+    _currentNavIndex = val;
+    update();
+  }
 }

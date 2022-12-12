@@ -1,6 +1,8 @@
 import 'package:emart_app/consts/consts.dart';
 
-Widget CommonButton({color, textColor, String? title, onPress}) {
+typedef OnPress = Function();
+
+Widget CommonButton({color, textColor, String? title, OnPress? onPress}) {
   return ElevatedButton(
       style:
           ElevatedButton.styleFrom(primary: color, padding: EdgeInsets.all(10)),

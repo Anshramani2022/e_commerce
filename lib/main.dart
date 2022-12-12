@@ -1,13 +1,15 @@
+import 'package:emart_app/controller/home_controlller.dart';
 import 'package:emart_app/view/splash_screen/splash_screen.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'consts/consts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,4 +23,6 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
     );
   }
+
+  HomeController controller = Get.put(HomeController());
 }

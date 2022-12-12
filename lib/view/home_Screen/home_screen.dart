@@ -11,8 +11,6 @@ class HomeScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(13),
       color: lightGrey,
-      width: context.screenWidth,
-      height: context.screenHeight,
       child: SafeArea(
         child: Column(
           children: [
@@ -104,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: featuredCategories.text
                             .color(darkFontGrey)
-                            .size(22)
+                            .size(18)
                             .fontFamily(semibold)
                             .make()),
                     10.heightBox,
@@ -130,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(12),
                       width: double.infinity,
-                      decoration: BoxDecoration(color: redColor),
+                      decoration: const BoxDecoration(color: redColor),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -201,6 +199,7 @@ class HomeScreen extends StatelessWidget {
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
+                      itemCount: 6,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
