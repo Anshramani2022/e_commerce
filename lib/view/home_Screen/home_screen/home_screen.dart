@@ -1,7 +1,7 @@
 import 'package:emart_app/Widget_common/home_button.dart';
 import 'package:emart_app/consts/consts.dart';
 
-import 'component/featured_component.dart';
+import '../component/featured_component.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
