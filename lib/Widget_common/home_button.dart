@@ -1,6 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 
-Widget HomeButton({width, height, icon, String? title, onPress}) {
+Widget homeButton({width, height, icon, String? title, onPress}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [

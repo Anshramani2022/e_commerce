@@ -1,5 +1,4 @@
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/consts/images.dart';
 
 const socialIconList = [icFacebookLogo, icGoogleLogo, icTwitterLogo];
 
@@ -34,4 +33,12 @@ const categoryImages = [
   imgFc7,
   imgFc8,
   imgFc9,
+];
+
+const itemDetailButtonList = [
+  video,
+  reviews,
+  sellerPolicy,
+  returnPolicy,
+  supportPolicy
 ];

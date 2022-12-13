@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:emart_app/Widget_common/bg_widget.dart';
 import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
@@ -15,7 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BgWidget(
+    return bgWidget(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -36,12 +34,11 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {}, child: forgetPass.text.make()),
                 ),
                 5.heightBox,
-                CommonButton(
+                commonButton(
                         title: login,
                         color: redColor,
                         onPress: () {
-                          Get.to(() => Home());
-                          log("go to homeddddddd");
+                          Get.to(() => const Home());
                           // Get.to(() => Home());
                         },
                         textColor: whiteColor)
@@ -51,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 5.heightBox,
                 createNewAccount.text.color(fontGrey).make(),
                 5.heightBox,
-                CommonButton(
+                commonButton(
                   title: signup,
                   color: lightgolden,
                   onPress: () {

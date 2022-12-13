@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
                           2,
-                          (index) => HomeButton(
+                          (index) => homeButton(
                               width: context.screenWidth / 2.5,
                               height: context.screenHeight * 0.15,
                               icon: index == 0 ? icTodaysDeal : icFlashDeal,
@@ -83,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
                           3,
-                          (index) => HomeButton(
+                          (index) => homeButton(
                               width: context.screenWidth / 3.5,
                               height: context.screenHeight * 0.15,
                               icon: index == 0

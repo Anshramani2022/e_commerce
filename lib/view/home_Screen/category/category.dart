@@ -9,7 +9,7 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BgWidget(
+    return bgWidget(
         child: Scaffold(
       appBar: AppBar(
         title: category.text.fontFamily(bold).white.make(),

@@ -7,7 +7,7 @@ import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

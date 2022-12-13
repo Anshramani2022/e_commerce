@@ -1,8 +1,8 @@
 import 'package:emart_app/consts/consts.dart';
 
-Widget BgWidget({Widget? child}) {
+Widget bgWidget({Widget? child}) {
   return Container(
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       image:
           DecorationImage(image: AssetImage(imgBackground), fit: BoxFit.fill),
     ),

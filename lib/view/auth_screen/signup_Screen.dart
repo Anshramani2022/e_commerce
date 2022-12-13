@@ -17,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool? isChecked = false;
   @override
   Widget build(BuildContext context) {
-    return BgWidget(
+    return bgWidget(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 10.heightBox,
-                CommonButton(
+                commonButton(
                         title: signup,
                         color: isChecked == true ? redColor : lightGrey,
                         onPress: () {},
@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     .make(),
                 10.heightBox,
                 RichText(
-                    text: TextSpan(children: [
+                    text: const TextSpan(children: [
                   TextSpan(
                       text: "Already Have An Account? ",
                       style: TextStyle(fontFamily: bold, color: fontGrey)),
