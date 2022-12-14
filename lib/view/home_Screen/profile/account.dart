@@ -31,9 +31,8 @@ class AccountScreen extends StatelessWidget {
                   Image.asset(
                     imgProfile2,
                     fit: BoxFit.cover,
-                    width: 100,
+                    width: 115,
                   ).box.roundedFull.clip(Clip.antiAlias).make(),
-                  10.widthBox,
                   Expanded(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +49,7 @@ class AccountScreen extends StatelessWidget {
                 ],
               ),
             ),
-            20.heightBox,
+            // 20.heightBox,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

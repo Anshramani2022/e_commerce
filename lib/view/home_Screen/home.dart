@@ -5,6 +5,7 @@ import 'package:emart_app/view/home_Screen/cart/cart.dart';
 import 'package:emart_app/view/home_Screen/category/category.dart';
 import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);

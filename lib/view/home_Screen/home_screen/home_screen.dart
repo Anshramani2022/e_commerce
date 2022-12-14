@@ -28,7 +28,6 @@ class HomeScreen extends StatelessWidget {
                     hintStyle: TextStyle(color: textfieldGrey)),
               ),
             ),
-            10.heightBox,
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -50,7 +49,6 @@ class HomeScreen extends StatelessWidget {
                             .make();
                       },
                     ),
-                    10.heightBox,
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
@@ -61,7 +59,6 @@ class HomeScreen extends StatelessWidget {
                               icon: index == 0 ? icTodaysDeal : icFlashDeal,
                               title: index == 0 ? todayDeal : flashSale),
                         )),
-                    10.heightBox,
                     VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
@@ -78,7 +75,6 @@ class HomeScreen extends StatelessWidget {
                             .make();
                       },
                     ),
-                    10.heightBox,
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(
@@ -97,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                                       ? brand
                                       : topSeller),
                         )),
-                    20.heightBox,
+                    10.heightBox,
                     Align(
                         alignment: Alignment.centerLeft,
                         child: featuredCategories.text
@@ -105,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                             .size(18)
                             .fontFamily(semibold)
                             .make()),
-                    10.heightBox,
+                    5.heightBox,
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -124,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                                 )).toList(),
                       ),
                     ),
-                    20.heightBox,
+                    10.heightBox,
                     Container(
                       padding: const EdgeInsets.all(12),
                       width: double.infinity,
@@ -178,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    20.heightBox,
+                    10.heightBox,
                     VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
@@ -195,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                             .make();
                       },
                     ),
-                    20.heightBox,
+                    10.heightBox,
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -212,10 +208,8 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               imgP5,
-                              height: 300,
-                              width: 300,
                               fit: BoxFit.cover,
-                            ),
+                            ).box.size(150, 150).make(),
                             const Spacer(),
                             "Laptop 4GB/512ssd"
                                 .text

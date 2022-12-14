@@ -11,7 +11,7 @@ Widget detailsCart({width, String? number, String? title}) {
   )
       .box
       .width(width)
-      .height(80)
+      .height(85)
       .rounded
       .white
       .padding(const EdgeInsets.all(4))

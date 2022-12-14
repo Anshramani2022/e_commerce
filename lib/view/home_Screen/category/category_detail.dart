@@ -64,7 +64,6 @@ class CategoryDetail extends StatelessWidget {
                         .color(darkFontGrey)
                         .fontFamily(semibold)
                         .make(),
-                    10.heightBox,
                     "\$600"
                         .text
                         .color(redColor)
@@ -78,7 +77,7 @@ class CategoryDetail extends StatelessWidget {
                     .outerShadowSm
                     .margin(const EdgeInsets.symmetric(horizontal: 4))
                     .roundedSM
-                    .padding(const EdgeInsets.all(12))
+                    .padding(const EdgeInsets.all(9))
                     .make()
                     .onTap(() {
                   Get.to(() => const ItemDetails(

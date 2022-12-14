@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: appname,
       theme: ThemeData(
+          useMaterial3: true,
           scaffoldBackgroundColor: Colors.transparent,
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.transparent,

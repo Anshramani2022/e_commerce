@@ -30,8 +30,8 @@ class CategoryScreen extends StatelessWidget {
                 Image.asset(
                   categoryImages[index],
                   height: 120,
-                  width: 200,
-                  fit: BoxFit.cover,
+                  width: 180,
+                  fit: BoxFit.fill,
                 ),
                 10.heightBox,
                 categoriesList[index]
