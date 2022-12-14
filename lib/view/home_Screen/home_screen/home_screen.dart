@@ -212,8 +212,8 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               imgP5,
-                              height: 200,
-                              width: 200,
+                              height: 300,
+                              width: 300,
                               fit: BoxFit.cover,
                             ),
                             const Spacer(),

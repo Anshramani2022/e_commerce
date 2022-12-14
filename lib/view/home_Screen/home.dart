@@ -1,7 +1,7 @@
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/home_controlller.dart';
-import 'package:emart_app/view/home_Screen/account.dart';
-import 'package:emart_app/view/home_Screen/cart.dart';
+import 'package:emart_app/view/home_Screen/profile/account.dart';
+import 'package:emart_app/view/home_Screen/cart/cart.dart';
 import 'package:emart_app/view/home_Screen/category/category.dart';
 import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
 import 'package:get/get.dart';

@@ -49,3 +49,5 @@ const video = "Video",
     returnPolicy = "Return Policy",
     supportPolicy = "Support Policy",
     productsMayYouLike = "Product May Also You Like";
+
+const wishlist = "Wish List", order = "My Order", message = " Messages";
