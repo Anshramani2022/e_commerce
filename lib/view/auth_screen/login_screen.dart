@@ -21,9 +21,9 @@ class LoginScreen extends StatelessWidget {
           children: [
             (context.screenHeight * 0.1).heightBox,
             appLogoWidget(),
-            10.heightBox,
+            5.heightBox,
             "Log In To $appname".text.white.size(22).fontFamily(bold).make(),
-            15.heightBox,
+            10.heightBox,
             Column(
               children: [
                 customTextField(hint: emailHint, title: email),
@@ -33,7 +33,6 @@ class LoginScreen extends StatelessWidget {
                   child: TextButton(
                       onPressed: () {}, child: forgetPass.text.make()),
                 ),
-                5.heightBox,
                 commonButton(
                         title: login,
                         color: redColor,
@@ -45,9 +44,7 @@ class LoginScreen extends StatelessWidget {
                     .box
                     .width(context.screenWidth - 50)
                     .make(),
-                5.heightBox,
                 createNewAccount.text.color(fontGrey).make(),
-                5.heightBox,
                 commonButton(
                   title: signup,
                   color: lightgolden,
@@ -56,7 +53,6 @@ class LoginScreen extends StatelessWidget {
                   },
                   textColor: redColor,
                 ).box.width(context.screenWidth - 50).make(),
-                10.heightBox,
                 loginwith.text.color(fontGrey).make(),
                 5.heightBox,
                 Row(
@@ -67,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: CircleAvatar(
                               backgroundColor: lightGrey,
-                              radius: 35,
+                              radius: 30,
                               child: Image.asset(
                                 socialIconList[index],
                                 width: 30,
