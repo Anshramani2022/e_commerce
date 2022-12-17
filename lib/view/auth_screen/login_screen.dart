@@ -1,6 +1,7 @@
 import 'package:emart_app/Widget_common/bg_widget.dart';
 import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controller/auth_controller.dart';
 import 'package:emart_app/view/auth_screen/signup_Screen.dart';
 import 'package:emart_app/view/home_Screen/home.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,18 @@ import 'package:get/get.dart';
 import '../../Widget_common/commonButton.dart';
 import '../../Widget_common/common_textfield.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  var controller = Get.put(AuthController());
+  var passController = TextEditingController();
+
+  var emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,35 +37,70 @@ class LoginScreen extends StatelessWidget {
             10.heightBox,
             Column(
               children: [
-                customTextField(hint: emailHint, title: email),
-                customTextField(title: password, hint: passwordHint),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {}, child: forgetPass.text.make()),
-                ),
+                10.heightBox,
+                customTextField(
+                    hint: emailHint,
+                    title: email,
+                    controller: emailController,
+                    isPass: false),
+                customTextField(
+                    title: password,
+                    hint: passwordHint,
+                    controller: passController,
+                    isPass: true),
+                10.heightBox,
                 commonButton(
                         title: login,
-                        color: redColor,
-                        onPress: () {
-                          Get.to(() => const Home());
-                          // Get.to(() => Home());
+                        color: redColor.withOpacity(0.90),
+                        onPress: () async {
+                          try {
+                            await controller
+                                .loginMethod(
+                                    context: context,
+                                    password: passController.text,
+                                    email: emailController.text)
+                                .then((value) {
+                              return controller.storeUserData(
+                                  password: passController.text,
+                                  email: emailController.text);
+                            }).then((value) {
+                              VxToast.show(context, msg: loggedIn);
+                              return Get.offAll(const Home());
+                            });
+                          } catch (e) {
+                            auth.signOut();
+                            VxToast.show(context, msg: e.toString());
+                          }
                         },
                         textColor: whiteColor)
                     .box
-                    .width(context.screenWidth - 50)
+                    .width(context.screenWidth - 70)
                     .make(),
-                createNewAccount.text.color(fontGrey).make(),
-                commonButton(
-                  title: signup,
-                  color: lightgolden,
-                  onPress: () {
-                    Get.to(() => const SignUpScreen());
-                  },
-                  textColor: redColor,
-                ).box.width(context.screenWidth - 50).make(),
-                loginwith.text.color(fontGrey).make(),
-                5.heightBox,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {}, child: forgetPass.text.size(5).make()),
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                        child: Divider(
+                      thickness: 1,
+                      color: fontGrey,
+                    )),
+                    loginwith.text
+                        .color(fontGrey)
+                        .size(5)
+                        .make()
+                        .paddingSymmetric(horizontal: 5),
+                    const Expanded(
+                        child: Divider(
+                      thickness: 1,
+                      color: fontGrey,
+                    )),
+                  ],
+                ),
+                7.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -70,7 +116,20 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           )),
-                )
+                ),
+                10.heightBox,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    createNewAccount.text.color(fontGrey).size(5).make(),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(() => const SignUpScreen());
+                      },
+                      child: "SignUp".text.size(5).make(),
+                    )
+                  ],
+                ),
               ],
             )
                 .box

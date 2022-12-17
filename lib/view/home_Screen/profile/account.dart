@@ -1,4 +1,7 @@
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controller/auth_controller.dart';
+import 'package:emart_app/view/auth_screen/login_screen.dart';
+import 'package:get/get.dart';
 
 import '../../../Widget_common/bg_widget.dart';
 import 'component/details_cart.dart';
@@ -44,7 +47,10 @@ class AccountScreen extends StatelessWidget {
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
                           side: const BorderSide(color: whiteColor)),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await Get.put(AuthController()).signoutMethod(context);
+                        Get.to(() => const LoginScreen());
+                      },
                       child: "Log out".text.fontFamily(semibold).white.make())
                 ],
               ),
