@@ -40,17 +40,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Column(
               children: [
                 customTextField(
-                    hint: nameHint, title: name, controller: nameController),
+                    hint: nameHint,
+                    title: name,
+                    controller: nameController,
+                    isPass: false),
                 customTextField(
-                    hint: emailHint, title: email, controller: emailController),
+                    hint: emailHint,
+                    title: email,
+                    controller: emailController,
+                    isPass: false),
                 customTextField(
                     hint: passwordHint,
                     title: password,
-                    controller: passController),
+                    controller: passController,
+                    isPass: true),
                 customTextField(
                     title: retypePassword,
                     hint: passwordHint,
-                    controller: retypePassController),
+                    controller: retypePassController,
+                    isPass: true),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -111,9 +119,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     password: passController.text,
                                     email: emailController.text);
                               }).then((value) {
+                                VxToast.show(context, msg: loggedIn);
                                 return Get.offAll(const Home());
                               });
-                            } catch (e) {}
+                            } catch (e) {
+                              auth.signOut();
+                              VxToast.show(context, msg: e.toString());
+                            }
                           }
                         },
                         textColor: whiteColor)

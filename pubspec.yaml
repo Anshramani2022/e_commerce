@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   velocity_x: ^3.6.0
   get: ^4.6.5
-  google_nav_bar: ^5.0.6
+  google_fonts: ^3.0.1
 
   #firebase
   firebase_auth: ^4.2.0
