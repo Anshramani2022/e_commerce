@@ -5,7 +5,8 @@ typedef OnPress = Function();
 Widget commonButton({color, textColor, String? title, OnPress? onPress}) {
   return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          primary: color, padding: const EdgeInsets.all(10)),
+        primary: color,
+      ),
       onPressed: onPress,
       child: title!.text.fontFamily(bold).color(textColor).make());
 }

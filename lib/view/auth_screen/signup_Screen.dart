@@ -111,6 +111,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               title: signup,
                               color: isChecked == true ? redColor : lightGrey,
                               onPress: () async {
+                                FocusScope.of(context).unfocus();
+
                                 if (isChecked != false) {
                                   controller.isLoading(true);
                                   try {

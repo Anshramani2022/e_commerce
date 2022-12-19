@@ -60,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               title: login,
                               color: redColor.withOpacity(0.90),
                               onPress: () async {
+                                FocusScope.of(context).unfocus();
                                 controller.isLoading(true);
                                 await controller
                                     .loginMethod(context: context)
