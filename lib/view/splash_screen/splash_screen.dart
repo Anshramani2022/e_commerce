@@ -1,6 +1,8 @@
 import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
+import 'package:emart_app/view/home_Screen/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +16,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   chageScreen() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => const LoginScreen());
+      // Get.to(() => const LoginScreen());
+      auth.authStateChanges().listen((User? user) {
+        //when
+        if (user == null && mounted) {
+          Get.offAll(() => const LoginScreen());
+        } else {
+          Get.offAll(() => const Home());
+        }
+      });
     });
   }
 
