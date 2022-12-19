@@ -40,8 +40,8 @@ class AccountScreen extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      "Dummmy User".text.fontFamily(semibold).white.make(),
-                      "user@gmail.com".text.white.make(),
+                      "Dummy User".text.fontFamily(semibold).white.make(),
+                      currentUser!.email!.text.white.make(),
                     ],
                   )),
                   OutlinedButton(

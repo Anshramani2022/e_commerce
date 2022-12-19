@@ -4,32 +4,42 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  Future<UserCredential?> loginMethod(
-      {String? email, String? password, context}) async {
+  var isLoading = false.obs;
+  var passController = TextEditingController();
+  var emailController = TextEditingController();
+  Future<UserCredential?> loginMethod({context}) async {
+    UserCredential? userCredential;
     try {
-      await auth.signInWithEmailAndPassword(email: email!, password: password!);
+      userCredential = await auth.signInWithEmailAndPassword(
+          email: emailController.text, password: passController.text);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
-    return null;
+    return userCredential;
   }
 
   Future<UserCredential?> signupMethod(
       {String? email, String? password, context}) async {
+    UserCredential? userCredential;
     try {
-      await auth.createUserWithEmailAndPassword(
+      userCredential = await auth.createUserWithEmailAndPassword(
           email: email!, password: password!);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
-    return null;
+    return userCredential;
   }
 
   storeUserData({name, password, email}) async {
     DocumentReference store =
         await firestore.collection(userController).doc(currentUser!.uid);
-    store.set(
-        {"name": name, "password": password, "email": email, "imageUrl": ""});
+    store.set({
+      "name": name,
+      "password": password,
+      "email": email,
+      "imageUrl": "",
+      "id": currentUser!.uid
+    });
   }
 
   signoutMethod(context) async {
