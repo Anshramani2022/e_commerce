@@ -1,6 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 
-Widget detailsCart({width, String? number, String? title}) {
+Widget detailsCart({width, int? number, String? title}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/view/home_Screen/profile/account.dart';
 import 'package:get/get.dart';
 
 import '../../../Widget_common/bg_widget.dart';
@@ -29,7 +30,7 @@ class EditScreen extends StatelessWidget {
                 data['imageUrl'] == '' && controller.profileImg.isEmpty
                     ? Image.asset(
                         imgProfile2,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                         width: 115,
                       ).box.roundedFull.clip(Clip.antiAlias).make()
                     :
@@ -45,7 +46,7 @@ class EditScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             width: 115,
                           ).box.roundedFull.clip(Clip.antiAlias).make(),
-                10.heightBox,
+
                 commonButton(
                   color: redColor,
                   title: "Edit",
@@ -57,17 +58,22 @@ class EditScreen extends StatelessWidget {
                   },
                 ),
                 const Divider(),
-                20.heightBox,
+                10.heightBox,
                 customTextField(
                     title: nameHint,
                     isPass: false,
                     hint: name,
                     controller: controller.nameController),
                 customTextField(
-                    title: password,
+                    title: oldPass,
                     isPass: true,
-                    hint: password,
-                    controller: controller.passController),
+                    hint: passwordHint,
+                    controller: controller.oldpassController),
+                customTextField(
+                    title: newPass,
+                    isPass: true,
+                    hint: passwordHint,
+                    controller: controller.newpassController),
                 const Divider(),
                 controller.isLoading.value
                     ? const Center(
@@ -81,13 +87,35 @@ class EditScreen extends StatelessWidget {
                           title: "Save",
                           textColor: whiteColor,
                           onPress: () async {
+                            FocusScope.of(context).unfocus();
                             controller.isLoading(true);
-                            await controller.uploadImage();
-                            await controller.updateProfile(
-                                imgUrl: controller.profileImgLink,
-                                password: controller.passController.text,
-                                name: controller.nameController.text);
-                            VxToast.show(context, msg: "Profile Updated");
+
+                            //if image is not selected
+                            if (controller.profileImg.value.isNotEmpty) {
+                              await controller.uploadImage();
+                            } else {
+                              controller.profileImgLink = data['imageUrl'];
+                            }
+
+                            //if old pass match with data base
+                            if (data['password'] ==
+                                controller.oldpassController.text) {
+                              await controller.changeAuthPass(
+                                  email: data['email'],
+                                  password: controller.oldpassController.text,
+                                  newPassword:
+                                      controller.newpassController.text);
+
+                              await controller.updateProfile(
+                                  imgUrl: controller.profileImgLink,
+                                  password: controller.newpassController.text,
+                                  name: controller.nameController.text);
+                              VxToast.show(context, msg: "Profile Updated");
+                              Get.offAll(() => const AccountScreen());
+                            } else {
+                              VxToast.show(context, msg: "Wrong Old password");
+                              controller.isLoading(false);
+                            }
                           },
                         ),
                       ),

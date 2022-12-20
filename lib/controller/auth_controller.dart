@@ -13,7 +13,7 @@ class AuthController extends GetxController {
       userCredential = await auth.signInWithEmailAndPassword(
           email: emailController.text, password: passController.text);
     } on FirebaseAuthException catch (e) {
-      VxToast.show(context, msg: e.toString());
+      VxToast.show(context, msg: 'Email or Password is wrong😒');
     }
     return userCredential;
   }

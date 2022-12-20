@@ -20,7 +20,7 @@ class AccountScreen extends StatelessWidget {
     var controller = Get.put(ProfileController());
     return bgWidget(
         child: Scaffold(
-            body: StreamBuilder(
+            body: StreamBuilder<QuerySnapshot>(
       stream: FireStoreServices.getUser(currentUser!.uid),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) {
@@ -36,7 +36,7 @@ class AccountScreen extends StatelessWidget {
               children: [
                 //edit profile const e
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: const Align(
                       alignment: Alignment.topRight,
                       child: Icon(
@@ -44,7 +44,6 @@ class AccountScreen extends StatelessWidget {
                         color: whiteColor,
                       )).onTap(() {
                     controller.nameController.text = data['name'];
-                    controller.passController.text = data['password'];
 
                     Get.to(() => EditScreen(data: data));
                   }),
@@ -65,6 +64,7 @@ class AccountScreen extends StatelessWidget {
                               fit: BoxFit.cover,
                               width: 115,
                             ).box.roundedFull.clip(Clip.antiAlias).make(),
+                      5.widthBox,
                       Expanded(
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +90,7 @@ class AccountScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                // 20.heightBox,
+                25.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -135,7 +135,6 @@ class AccountScreen extends StatelessWidget {
                     .shadowSm
                     .make()
                     .box
-                    .color(redColor)
                     .make()
               ],
             ),

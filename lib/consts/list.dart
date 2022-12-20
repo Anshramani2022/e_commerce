@@ -26,12 +26,12 @@ const categoriesList = [
 const categoryImages = [
   imgFc1,
   imgFc2,
-  imgFc3,
+  imgFc8,
   imgFc4,
   imgFc5,
   imgFc6,
   imgFc7,
-  imgFc8,
+  imgFc3,
   imgFc9,
 ];
 

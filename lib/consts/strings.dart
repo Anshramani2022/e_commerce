@@ -54,4 +54,8 @@ const video = "Video",
     supportPolicy = "Support Policy",
     productsMayYouLike = "Product May Also You Like";
 
-const wishlist = "Wish List", order = "My Order", message = " Messages";
+const wishlist = "Wish List",
+    order = "My Order",
+    message = " Messages",
+    oldPass = 'Old Password',
+    newPass = 'New Password';
