@@ -1,3 +1,4 @@
+import 'package:emart_app/Widget_common/exit_dialog.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/home_controlller.dart';
 import 'package:emart_app/view/home_Screen/profile/account.dart';
@@ -46,25 +47,34 @@ class Home extends StatelessWidget {
           ),
           label: account)
     ];
-    return Scaffold(
-      body: Column(
-        children: [
-          Obx(() => Expanded(
-                child: navBody.elementAt(controller.currentNavIndex.value),
-              )),
-        ],
-      ),
-      bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          currentIndex: controller.currentNavIndex.value,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: whiteColor,
-          selectedItemColor: redColor,
-          selectedLabelStyle: const TextStyle(fontFamily: semibold),
-          items: navBarItem,
-          onTap: (value) {
-            controller.currentNavIndex.value = value;
-          },
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => exitDialog(context));
+        return false;
+      },
+      child: Scaffold(
+        body: Column(
+          children: [
+            Obx(() => Expanded(
+                  child: navBody.elementAt(controller.currentNavIndex.value),
+                )),
+          ],
+        ),
+        bottomNavigationBar: Obx(
+          () => BottomNavigationBar(
+            currentIndex: controller.currentNavIndex.value,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: whiteColor,
+            selectedItemColor: redColor,
+            selectedLabelStyle: const TextStyle(fontFamily: semibold),
+            items: navBarItem,
+            onTap: (value) {
+              controller.currentNavIndex.value = value;
+            },
+          ),
         ),
       ),
     );

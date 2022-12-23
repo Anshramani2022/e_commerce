@@ -7,3 +7,4 @@ User? currentUser = auth.currentUser;
 
 const userController = "users";
 const productCollection = "products";
+const cartCollection = "cart";

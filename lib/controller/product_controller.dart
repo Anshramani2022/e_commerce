@@ -1,3 +1,4 @@
+import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/model/category_model.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -37,5 +38,25 @@ class ProductController extends GetxController {
 
   totalMoney(price) {
     totalPrice.value = price * quentity.value;
+  }
+
+  addToCart({title, img, sellerName, color, qty, tprice, context}) async {
+    await firestore.collection(cartCollection).doc().set({
+      "title": title,
+      "img": img,
+      "sellerName": sellerName,
+      "color": color,
+      "qty": qty,
+      "tprice": tprice,
+      "added_by": currentUser!.uid
+    }).catchError((e) {
+      VxToast.show(context, msg: e.toString());
+    });
+  }
+
+  resetValue() {
+    totalPrice.value = 0;
+    quentity.value = 0;
+    colorIndex.value = 0;
   }
 }
