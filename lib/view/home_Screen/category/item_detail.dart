@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/product_controller.dart';
+import 'package:emart_app/view/chat_screen/chat_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../Widget_common/commonButton.dart';
@@ -33,7 +34,16 @@ class ItemDetails extends StatelessWidget {
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.favorite_outlined)),
+                onPressed: () {
+                  if (controller.isFav.value) {
+                    controller.removeFromWishList(data.id);
+                    controller.isFav(false);
+                  } else {
+                    controller.addToWishList(data.id);
+                    controller.isFav(true);
+                  }
+                },
+                icon: const Icon(Icons.favorite_outlined)),
           ],
         ),
         body: Column(
@@ -108,13 +118,20 @@ class ItemDetails extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              Icons.message_outlined,
-                              color: darkFontGrey,
-                            ),
-                          )
+                          CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: IconButton(
+                                onPressed: () {
+                                  Get.to(() => ChatScreen(), arguments: [
+                                    data['p_seller'],
+                                    data['vendor_id']
+                                  ]);
+                                },
+                                icon: Icon(
+                                  Icons.message_outlined,
+                                  color: darkFontGrey,
+                                ),
+                              ))
                         ],
                       )
                           .box
