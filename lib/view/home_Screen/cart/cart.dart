@@ -3,6 +3,7 @@ import 'package:emart_app/Widget_common/commonButton.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/cart_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/view/home_Screen/cart/shipping_screen.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
@@ -41,6 +42,7 @@ class CartScreen extends StatelessWidget {
           } else {
             var data = snapshot.data!.docs;
             controller.calculate(data);
+            controller.productSnapshot = data;
             return Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
@@ -50,7 +52,11 @@ class CartScreen extends StatelessWidget {
                     itemCount: data.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        leading: Image.network("${data[index]['img']}"),
+                        leading: Image.network(
+                          "${data[index]['img']}",
+                          width: 120,
+                          fit: BoxFit.fill,
+                        ),
                         title:
                             "${data[index]['title']} (x${data[index]['qty']})"
                                 .text
@@ -101,7 +107,9 @@ class CartScreen extends StatelessWidget {
                         color: redColor,
                         textColor: whiteColor,
                         title: 'Procced to Ship',
-                        onPress: () {},
+                        onPress: () {
+                          Get.to(() => const ShippingDetails());
+                        },
                       ))
                 ],
               ),

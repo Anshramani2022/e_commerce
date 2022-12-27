@@ -25,7 +25,7 @@ class ChatController extends GetxController {
   getChatId() async {
     isLoading(true);
     await chats
-        .where("id", isEqualTo: {freindId: null, currentId: null})
+        .where('users', isEqualTo: {freindId: null, currentId: null})
         .limit(1)
         .get()
         .then((QuerySnapshot snapshot) {
@@ -41,7 +41,9 @@ class ChatController extends GetxController {
               'freind_name': freindName,
               'sender_name': senderName,
             }).then((value) {
-              chatDocId = value.id;
+              {
+                chatDocId = value.id;
+              }
             });
           }
         });
