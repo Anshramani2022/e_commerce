@@ -5,7 +5,10 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/auth_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
+import 'package:emart_app/view/chat_screen/messaging_screen.dart';
 import 'package:emart_app/view/home_Screen/profile/edit_profle_screen.dart';
+import 'package:emart_app/view/orders_screen/order_screen.dart';
+import 'package:emart_app/view/wishlist_screen/wishlist_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../Widget_common/bg_widget.dart';
@@ -114,6 +117,21 @@ class AccountScreen extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return ListTile(
+                            onTap: () {
+                              switch (index) {
+                                case 0:
+                                  Get.to(() => const OrderScreen());
+                                  break;
+
+                                case 1:
+                                  Get.to(() => const WishlistScreen());
+                                  break;
+
+                                case 2:
+                                  Get.to(() => const MessageScreen());
+                                  break;
+                              }
+                            },
                             leading: Image.asset(
                               profileButtonsIcon[index],
                               width: 22,

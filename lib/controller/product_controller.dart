@@ -44,13 +44,15 @@ class ProductController extends GetxController {
     totalPrice.value = price * quentity.value;
   }
 
-  addToCart({title, img, sellerName, color, qty, tprice, context}) async {
+  addToCart(
+      {title, img, sellerName, color, qty, tprice, context, vendorId}) async {
     await firestore.collection(cartCollection).doc().set({
       "title": title,
       "img": img,
       "sellerName": sellerName,
       "color": color,
       "qty": qty,
+      "vendor_id": vendorId,
       "tprice": tprice,
       "added_by": currentUser!.uid
     }).catchError((e) {
@@ -64,15 +66,29 @@ class ProductController extends GetxController {
     colorIndex.value = 0;
   }
 
-  addToWishList(docId) async {
+  addToWishList(docId, context) async {
     await firestore.collection(productCollection).doc(docId).set({
       'p_wishlist': FieldValue.arrayUnion([currentUser!.uid])
     }, SetOptions(merge: true));
+
+    isFav(true);
+    VxToast.show(context, msg: "Add to WishList");
   }
 
-  removeFromWishList(docId) async {
+  removeFromWishList(docId, context) async {
     await firestore.collection(productCollection).doc(docId).set({
       'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
     }, SetOptions(merge: true));
+
+    isFav(false);
+    VxToast.show(context, msg: "Remove from WishList");
+  }
+
+  checkIfFav(data) async {
+    if (data['p_wishlist'].contains(currentUser!.uid)) {
+      isFav(true);
+    } else {
+      isFav(false);
+    }
   }
 }

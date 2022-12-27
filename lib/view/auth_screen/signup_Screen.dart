@@ -3,6 +3,7 @@ import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/auth_controller.dart';
 import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../Widget_common/commonButton.dart';
@@ -49,7 +50,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hint: emailHint,
                       title: email,
                       controller: emailController,
-                      isPass: false),
+                      isPass: false,
+                      keyboardType: TextInputType.emailAddress),
                   customTextField(
                       hint: passwordHint,
                       title: password,

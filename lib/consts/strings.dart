@@ -59,3 +59,5 @@ const wishlist = "Wish List",
     message = " Messages",
     oldPass = 'Old Password',
     newPass = 'New Password';
+
+const paypal = 'PayPal', stripe = 'Stripe', cod = 'Cash on delivery';
