@@ -64,6 +64,7 @@ class CartController extends GetxController {
         'color': productSnapshot[i]['color'],
         'img': productSnapshot[i]['img'],
         'qty': productSnapshot[i]['qty'],
+        'title': productSnapshot[i]['title'],
         'vendor_id': productSnapshot[i]['vendor_id'],
         'tprice': productSnapshot[i]['tprice'],
         'sellerName': productSnapshot[i]['sellerName'],

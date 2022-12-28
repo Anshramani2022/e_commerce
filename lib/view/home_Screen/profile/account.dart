@@ -94,23 +94,53 @@ class AccountScreen extends StatelessWidget {
                   ),
                 ),
                 25.heightBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    detailsCart(
-                        width: context.screenWidth / 3.4,
-                        title: "In your cart",
-                        number: data["cart_count"]),
-                    detailsCart(
-                        width: context.screenWidth / 3.4,
-                        title: "In your wishlist",
-                        number: data["wishlist_count"]),
-                    detailsCart(
-                        width: context.screenWidth / 3.4,
-                        title: "Your Order",
-                        number: data["order_count"]),
-                  ],
+                FutureBuilder(
+                  future: FireStoreServices.getCount(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      var countdata = snapshot.data;
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          detailsCart(
+                              width: context.screenWidth / 3.4,
+                              title: "In your cart",
+                              number: countdata[0]),
+                          detailsCart(
+                              width: context.screenWidth / 3.4,
+                              title: "In your wishlist",
+                              number: countdata[1]),
+                          detailsCart(
+                              width: context.screenWidth / 3.4,
+                              title: "Your Order",
+                              number: countdata[2]),
+                        ],
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(redColor)),
+                      );
+                    }
+                  },
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     detailsCart(
+                //         width: context.screenWidth / 3.4,
+                //         title: "In your cart",
+                //         number: data["cart_count"]),
+                //     detailsCart(
+                //         width: context.screenWidth / 3.4,
+                //         title: "In your wishlist",
+                //         number: data["wishlist_count"]),
+                //     detailsCart(
+                //         width: context.screenWidth / 3.4,
+                //         title: "Your Order",
+                //         number: data["order_count"]),
+                //   ],
+                // ),
 
                 //Button section
                 ListView.separated(

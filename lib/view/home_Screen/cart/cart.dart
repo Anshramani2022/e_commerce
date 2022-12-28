@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/commonButton.dart';
 import 'package:emart_app/consts/consts.dart';
-import 'package:emart_app/controller/cart_controller.dart';
+import 'package:emart_app/view/home_Screen/cart/component/cart_controller.dart';
 import 'package:emart_app/services/firestore_services.dart';
 import 'package:emart_app/view/home_Screen/cart/shipping_screen.dart';
 import 'package:get/get.dart';

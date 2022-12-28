@@ -1,5 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/home_button.dart';
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controller/home_controlller.dart';
+import 'package:emart_app/controller/product_controller.dart';
+import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/view/home_Screen/category/item_detail.dart';
+import 'package:emart_app/view/home_Screen/home_screen/search_screen.dart';
+import 'package:get/get.dart';
 
 import '../component/featured_component.dart';
 
@@ -8,6 +15,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => ProductController());
+    var controller = Get.find<HomeController>();
+
     return Container(
       padding: const EdgeInsets.all(13),
       color: lightGrey,
@@ -19,13 +29,21 @@ class HomeScreen extends StatelessWidget {
               height: 60,
               color: lightGrey,
               child: TextFormField(
-                decoration: const InputDecoration(
+                controller: controller.searchController,
+                decoration: InputDecoration(
                     border: InputBorder.none,
-                    suffixIcon: Icon(Icons.search),
+                    suffixIcon: Icon(Icons.search).onTap(() {
+                      if (controller
+                          .searchController.text.isNotEmptyAndNotNull) {
+                        Get.to(() => SearchScreen(
+                              title: controller.searchController.text,
+                            ));
+                      }
+                    }),
                     filled: true,
                     fillColor: whiteColor,
                     hintText: searchAnything,
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       color: redColor,
                     )),
               ),
@@ -137,40 +155,73 @@ class HomeScreen extends StatelessWidget {
                           10.heightBox,
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: List.generate(
-                                  6,
-                                  (index) => Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Image.asset(
-                                            imgP1,
-                                            width: 150,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          10.heightBox,
-                                          "Laptop 4GB/512ssd"
-                                              .text
-                                              .color(darkFontGrey)
-                                              .fontFamily(semibold)
-                                              .make(),
-                                          10.heightBox,
-                                          "\$600"
-                                              .text
-                                              .color(redColor)
-                                              .fontFamily(bold)
-                                              .size(16)
-                                              .make()
-                                        ],
-                                      )
-                                          .box
-                                          .white
-                                          .margin(const EdgeInsets.symmetric(
-                                              horizontal: 4))
-                                          .roundedSM
-                                          .padding(const EdgeInsets.all(8))
-                                          .make()),
+                            child: FutureBuilder(
+                              future: FireStoreServices.getFeaturedProduct(),
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.hasData) {
+                                  var featureddata = snapshot.data!.docs;
+                                  return Row(
+                                    children: List.generate(
+                                        featureddata.length,
+                                        (index) => Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Image.network(
+                                                  featureddata[index]
+                                                      ['p_images'][0],
+                                                  width: 150,
+                                                  height: 130,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                10.heightBox,
+                                                "${featureddata[index]['p_name']}"
+                                                    .text
+                                                    .color(darkFontGrey)
+                                                    .fontFamily(semibold)
+                                                    .make(),
+                                                10.heightBox,
+                                                "${featureddata[index]['p_prices']}"
+                                                    .numCurrency
+                                                    .text
+                                                    .color(redColor)
+                                                    .fontFamily(bold)
+                                                    .size(16)
+                                                    .make()
+                                              ],
+                                            )
+                                                .box
+                                                .white
+                                                .margin(
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 4))
+                                                .roundedSM
+                                                .padding(
+                                                    const EdgeInsets.all(8))
+                                                .make()
+                                                .onTap(() {
+                                              Get.to(() => ItemDetails(
+                                                    title:
+                                                        "${featureddata[index]['p_name']}",
+                                                    data: featureddata[index],
+                                                  ));
+                                            })),
+                                  );
+                                } else if (snapshot.data!.docs.isEmpty) {
+                                  return "No Featured Product"
+                                      .text
+                                      .white
+                                      .makeCentered();
+                                } else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor:
+                                          AlwaysStoppedAnimation(redColor),
+                                    ),
+                                  );
+                                }
+                              },
                             ),
                           )
                         ],
@@ -194,45 +245,68 @@ class HomeScreen extends StatelessWidget {
                       },
                     ),
                     10.heightBox,
-                    GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 6,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 8,
-                              crossAxisSpacing: 8,
-                              mainAxisExtent: 300),
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              imgP5,
-                              fit: BoxFit.cover,
-                            ).box.size(150, 150).make(),
-                            const Spacer(),
-                            "Laptop 4GB/512ssd"
-                                .text
-                                .color(darkFontGrey)
-                                .fontFamily(semibold)
-                                .make(),
-                            10.heightBox,
-                            "\$600"
-                                .text
-                                .color(redColor)
-                                .fontFamily(bold)
-                                .size(16)
-                                .make()
-                          ],
-                        )
-                            .box
-                            .white
-                            .margin(const EdgeInsets.symmetric(horizontal: 4))
-                            .roundedSM
-                            .padding(const EdgeInsets.all(12))
-                            .make();
+                    StreamBuilder(
+                      stream: FireStoreServices.allProduct(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(redColor),
+                          ));
+                        } else {
+                          var allproductdata = snapshot.data!.docs;
+                          return GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: allproductdata.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 8,
+                                    crossAxisSpacing: 8,
+                                    mainAxisExtent: 300),
+                            itemBuilder: (context, index) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Image.network(
+                                    allproductdata[index]['p_images'][0],
+                                    fit: BoxFit.cover,
+                                  ).box.size(150, 150).make(),
+                                  const Spacer(),
+                                  "${allproductdata[index]['p_name']}"
+                                      .text
+                                      .color(darkFontGrey)
+                                      .fontFamily(semibold)
+                                      .make(),
+                                  10.heightBox,
+                                  "${allproductdata[index]['p_prices']}"
+                                      .numCurrency
+                                      .text
+                                      .color(redColor)
+                                      .fontFamily(bold)
+                                      .size(16)
+                                      .make()
+                                ],
+                              )
+                                  .box
+                                  .white
+                                  .margin(
+                                      const EdgeInsets.symmetric(horizontal: 4))
+                                  .roundedSM
+                                  .padding(const EdgeInsets.all(12))
+                                  .make()
+                                  .onTap(() {
+                                Get.to(() => ItemDetails(
+                                      title:
+                                          "${allproductdata[index]['p_name']}",
+                                      data: allproductdata[index],
+                                    ));
+                              });
+                            },
+                          );
+                        }
                       },
                     )
                   ],

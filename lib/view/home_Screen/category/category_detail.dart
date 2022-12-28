@@ -7,20 +7,42 @@ import 'package:emart_app/view/home_Screen/category/item_detail.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 
-class CategoryDetail extends StatelessWidget {
+class CategoryDetail extends StatefulWidget {
   final String? title;
   const CategoryDetail({Key? key, required this.title}) : super(key: key);
 
   @override
+  State<CategoryDetail> createState() => _CategoryDetailState();
+}
+
+class _CategoryDetailState extends State<CategoryDetail> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    switchCategory(widget.title);
+  }
+
+  switchCategory(title) {
+    if (controller.subCat.contains(title)) {
+      productmethod = FireStoreServices.subCategoryProduct(title);
+    } else {
+      productmethod = FireStoreServices.getProduct(title);
+    }
+  }
+
+  var controller = Get.find<ProductController>();
+
+  dynamic productmethod;
+  @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProductController>();
     return bgWidget(
         child: Scaffold(
             appBar: AppBar(
-              title: title!.text.white.fontFamily(bold).size(18).make(),
+              title: widget.title!.text.white.fontFamily(bold).size(18).make(),
             ),
             body: StreamBuilder(
-              stream: FireStoreServices.getProduct(title),
+              stream: productmethod,
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
                   return const Center(
@@ -56,7 +78,11 @@ class CategoryDetail extends StatelessWidget {
                                     .margin(const EdgeInsets.symmetric(
                                         horizontal: 4))
                                     .rounded
-                                    .make(),
+                                    .make()
+                                    .onTap(() {
+                                  switchCategory("${controller.subCat[index]}");
+                                  setState(() {});
+                                }),
                               ),
                             )),
                         20.heightBox,
