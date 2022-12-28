@@ -1,5 +1,9 @@
 import 'package:emart_app/consts/consts.dart';
+<<<<<<< HEAD
 import 'package:emart_app/view/home_Screen/cart/component/cart_controller.dart';
+=======
+import 'package:emart_app/controller/cart_controller.dart';
+>>>>>>> origin/master
 import 'package:emart_app/view/home_Screen/home.dart';
 import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
 import 'package:get/get.dart';
