@@ -4,11 +4,7 @@ import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/home_Screen/cart/payment_method.dart';
 import 'package:get/get.dart';
 
-<<<<<<< HEAD
 import 'component/cart_controller.dart';
-=======
-import '../../../controller/cart_controller.dart';
->>>>>>> origin/master
 
 class ShippingDetails extends StatelessWidget {
   const ShippingDetails({Key? key}) : super(key: key);

@@ -39,4 +39,77 @@ class FireStoreServices {
         .orderBy('created_on', descending: false)
         .snapshots();
   }
+
+  static getAllOrders() {
+    return firestore
+        .collection(orderCollection)
+        .where('order_by', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+  static getWishlist() {
+    return firestore
+        .collection(productCollection)
+        .where('p_wishlist', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+  static getAllMessage() {
+    return firestore
+        .collection(chatsCollection)
+        .where('fromId', isEqualTo: currentUser!.uid)
+        .snapshots();
+  }
+
+  static allProduct() {
+    return firestore.collection(productCollection).snapshots();
+  }
+
+  static getFeaturedProduct() {
+    return firestore
+        .collection(productCollection)
+        .where('is_featured', isEqualTo: true)
+        .snapshots();
+  }
+
+  static getCounts() async {
+    var res = await Future.wait([
+      firestore
+          .collection(cartCollection)
+          .where('added_by', isEqualTo: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+      firestore
+          .collection(productCollection)
+          .where('p_wishlist', arrayContains: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+      firestore
+          .collection(orderCollection)
+          .where('order_by', isEqualTo: currentUser!.uid)
+          .get()
+          .then((value) {
+        return value.docs.length;
+      }),
+    ]);
+    return res;
+  }
+
+  static searchProduct(title) {
+    return firestore
+        .collection(productCollection)
+        .where('p_name', isLessThanOrEqualTo: title)
+        .get();
+  }
+
+  static subCategoryProduct(title) {
+    return firestore
+        .collection(productCollection)
+        .where('p_subcategory', isEqualTo: title)
+        .snapshots();
+  }
 }

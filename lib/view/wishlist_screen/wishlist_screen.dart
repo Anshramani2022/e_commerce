@@ -21,17 +21,12 @@ class WishlistScreen extends StatelessWidget {
                 child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation(redColor)));
           } else if (snapshot.data!.docs.isEmpty) {
-<<<<<<< HEAD
             return "No Any WishList"
-=======
-            return "No Order yet!"
->>>>>>> origin/master
                 .text
                 .color(darkFontGrey)
                 .fontFamily(semibold)
                 .makeCentered();
           } else {
-<<<<<<< HEAD
             var data = snapshot.data!.docs;
             return Column(
               children: [
@@ -73,9 +68,6 @@ class WishlistScreen extends StatelessWidget {
                 )),
               ],
             );
-=======
-            return Container();
->>>>>>> origin/master
           }
         },
       ),

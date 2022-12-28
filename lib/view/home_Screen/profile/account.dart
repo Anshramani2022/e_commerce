@@ -95,7 +95,7 @@ class AccountScreen extends StatelessWidget {
                 ),
                 25.heightBox,
                 FutureBuilder(
-                  future: FireStoreServices.getCount(),
+                  future: FireStoreServices.getCounts(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       var countdata = snapshot.data;

@@ -155,8 +155,8 @@ class HomeScreen extends StatelessWidget {
                           10.heightBox,
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            child: FutureBuilder(
-                              future: FireStoreServices.getFeaturedProduct(),
+                            child: StreamBuilder(
+                              stream: FireStoreServices.getFeaturedProduct(),
                               builder: (context,
                                   AsyncSnapshot<QuerySnapshot> snapshot) {
                                 if (snapshot.hasData) {
