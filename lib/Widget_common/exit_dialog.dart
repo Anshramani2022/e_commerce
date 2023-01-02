@@ -9,7 +9,7 @@ Widget exitDialog(context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         'Confirm'.text.fontFamily(bold).color(darkFontGrey).size(18).make(),
-        Divider(),
+        const Divider(),
         10.heightBox,
         "Are you sure you want exit?".text.size(12).make(),
         10.heightBox,
@@ -33,6 +33,6 @@ Widget exitDialog(context) {
           ],
         )
       ],
-    ).box.color(lightGrey).padding(EdgeInsets.all(12)).roundedSM.make(),
+    ).box.color(lightGrey).padding(const EdgeInsets.all(12)).roundedSM.make(),
   );
 }

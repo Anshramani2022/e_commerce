@@ -21,7 +21,7 @@ class FireStoreServices {
   static getcart(uid) {
     return firestore
         .collection(cartCollection)
-        .where("added_by", isEqualTo: uid)
+        .where('added_by', isEqualTo: uid)
         .snapshots();
   }
 
@@ -50,7 +50,7 @@ class FireStoreServices {
   static getWishlist() {
     return firestore
         .collection(productCollection)
-        .where('p_wishlist', isEqualTo: currentUser!.uid)
+        .where('p_wishlist', arrayContains: currentUser!.uid)
         .snapshots();
   }
 

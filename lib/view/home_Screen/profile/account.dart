@@ -60,12 +60,12 @@ class AccountScreen extends StatelessWidget {
                           ? Image.asset(
                               imgProfile2,
                               fit: BoxFit.cover,
-                              width: 115,
+                              width: 100,
                             ).box.roundedFull.clip(Clip.antiAlias).make()
                           : Image.network(
                               data['imageUrl'],
                               fit: BoxFit.cover,
-                              width: 115,
+                              width: 100,
                             ).box.roundedFull.clip(Clip.antiAlias).make(),
                       5.widthBox,
                       Expanded(
@@ -77,7 +77,7 @@ class AccountScreen extends StatelessWidget {
                               .fontFamily(semibold)
                               .white
                               .make(),
-                          currentUser!.email!.text.white.make(),
+                          "${data['email']}".text.white.make(),
                         ],
                       )),
                       OutlinedButton(
@@ -93,7 +93,6 @@ class AccountScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                25.heightBox,
                 FutureBuilder(
                   future: FireStoreServices.getCounts(),
                   builder: (context, AsyncSnapshot snapshot) {

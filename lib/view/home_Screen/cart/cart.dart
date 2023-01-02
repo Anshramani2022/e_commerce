@@ -44,7 +44,7 @@ class CartScreen extends StatelessWidget {
             controller.calculate(data);
             controller.productSnapshot = data;
             return Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Expanded(
@@ -73,7 +73,7 @@ class CartScreen extends StatelessWidget {
                           onPressed: () {
                             FireStoreServices.deleteDocument(data[index].id);
                           },
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: redColor,
                         ),
                       );

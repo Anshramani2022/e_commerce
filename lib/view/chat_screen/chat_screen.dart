@@ -91,12 +91,7 @@ class ChatScreen extends StatelessWidget {
                       color: redColor,
                     ))
               ],
-            )
-                .box
-                .height(80)
-                .padding(const EdgeInsets.all(12))
-                .margin(EdgeInsets.only(bottom: 8))
-                .make()
+            ).box.height(80).margin(EdgeInsets.only(bottom: 8)).make()
           ],
         ),
       ),

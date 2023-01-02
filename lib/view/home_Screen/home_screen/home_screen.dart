@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/home_button.dart';
 import 'package:emart_app/consts/consts.dart';
@@ -159,7 +161,19 @@ class HomeScreen extends StatelessWidget {
                               stream: FireStoreServices.getFeaturedProduct(),
                               builder: (context,
                                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasData) {
+                                if (!snapshot.hasData) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor:
+                                          AlwaysStoppedAnimation(redColor),
+                                    ),
+                                  );
+                                } else if (snapshot.data!.docs.isEmpty) {
+                                  return "No Featured Product"
+                                      .text
+                                      .white
+                                      .makeCentered();
+                                } else {
                                   var featureddata = snapshot.data!.docs;
                                   return Row(
                                     children: List.generate(
@@ -207,18 +221,6 @@ class HomeScreen extends StatelessWidget {
                                                     data: featureddata[index],
                                                   ));
                                             })),
-                                  );
-                                } else if (snapshot.data!.docs.isEmpty) {
-                                  return "No Featured Product"
-                                      .text
-                                      .white
-                                      .makeCentered();
-                                } else {
-                                  return const Center(
-                                    child: CircularProgressIndicator(
-                                      valueColor:
-                                          AlwaysStoppedAnimation(redColor),
-                                    ),
                                   );
                                 }
                               },

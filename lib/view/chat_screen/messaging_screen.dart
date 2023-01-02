@@ -41,7 +41,7 @@ class MessageScreen extends StatelessWidget {
                       return Card(
                         child: ListTile(
                           onTap: () {
-                            Get.to(() => ChatScreen(), arguments: [
+                            Get.to(() => const ChatScreen(), arguments: [
                               data[index]['freind_name'],
                               data[index]['toId']
                             ]);

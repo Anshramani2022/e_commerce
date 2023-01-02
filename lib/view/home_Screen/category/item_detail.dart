@@ -127,12 +127,12 @@ class ItemDetails extends StatelessWidget {
                               backgroundColor: Colors.white,
                               child: IconButton(
                                 onPressed: () {
-                                  Get.to(() => ChatScreen(), arguments: [
+                                  Get.to(() => const ChatScreen(), arguments: [
                                     data['p_seller'],
                                     data['vendor_id']
                                   ]);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.message_outlined,
                                   color: darkFontGrey,
                                 ),
