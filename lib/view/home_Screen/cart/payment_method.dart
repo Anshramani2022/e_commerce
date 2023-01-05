@@ -1,6 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 
-import 'package:emart_app/view/home_Screen/home.dart';
+import 'package:emart_app/view/home_Screen/bottom_nav_screen.dart';
 import 'package:emart_app/view/home_Screen/home_screen/home_screen.dart';
 import 'package:get/get.dart';
 
@@ -8,11 +8,11 @@ import '../../../Widget_common/commonButton.dart';
 import 'component/cart_controller.dart';
 
 class PaymentMehtods extends StatelessWidget {
-  const PaymentMehtods({Key? key}) : super(key: key);
+  PaymentMehtods({Key? key}) : super(key: key);
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<CartController>();
     return Obx(
       () => Scaffold(
         backgroundColor: whiteColor,
@@ -43,7 +43,7 @@ class PaymentMehtods extends StatelessWidget {
 
                     await controller.clearCart();
                     VxToast.show(context, msg: "Order Place Succesfully");
-                    Get.offAll(() => const Home());
+                    Get.offAll(() => BottomNavScreen());
                   },
                   textColor: whiteColor),
         ),

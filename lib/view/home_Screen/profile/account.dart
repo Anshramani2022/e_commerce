@@ -1,19 +1,18 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emart_app/Widget_common/bg_widget.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/auth_controller.dart';
-import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/controller/profile_controller.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
 import 'package:emart_app/view/chat_screen/messaging_screen.dart';
+import 'package:emart_app/view/home_Screen/profile/component/details_cart.dart';
 import 'package:emart_app/view/home_Screen/profile/edit_profle_screen.dart';
 import 'package:emart_app/view/orders_screen/order_screen.dart';
 import 'package:emart_app/view/wishlist_screen/wishlist_screen.dart';
 import 'package:get/get.dart';
-
-import '../../../Widget_common/bg_widget.dart';
-import '../../../controller/profile_controller.dart';
-import 'component/details_cart.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -60,12 +59,12 @@ class AccountScreen extends StatelessWidget {
                           ? Image.asset(
                               imgProfile2,
                               fit: BoxFit.cover,
-                              width: 100,
+                              width: 115,
                             ).box.roundedFull.clip(Clip.antiAlias).make()
                           : Image.network(
                               data['imageUrl'],
                               fit: BoxFit.cover,
-                              width: 100,
+                              width: 115,
                             ).box.roundedFull.clip(Clip.antiAlias).make(),
                       5.widthBox,
                       Expanded(
@@ -93,6 +92,7 @@ class AccountScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                25.heightBox,
                 FutureBuilder(
                   future: FireStoreServices.getCounts(),
                   builder: (context, AsyncSnapshot snapshot) {
@@ -123,25 +123,8 @@ class AccountScreen extends StatelessWidget {
                     }
                   },
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: [
-                //     detailsCart(
-                //         width: context.screenWidth / 3.4,
-                //         title: "In your cart",
-                //         number: data["cart_count"]),
-                //     detailsCart(
-                //         width: context.screenWidth / 3.4,
-                //         title: "In your wishlist",
-                //         number: data["wishlist_count"]),
-                //     detailsCart(
-                //         width: context.screenWidth / 3.4,
-                //         title: "Your Order",
-                //         number: data["order_count"]),
-                //   ],
-                // ),
 
-                //Button section
+                // Button section
                 ListView.separated(
                         shrinkWrap: true,
                         itemBuilder: (context, index) {

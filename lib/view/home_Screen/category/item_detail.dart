@@ -10,11 +10,10 @@ import '../../../Widget_common/commonButton.dart';
 class ItemDetails extends StatelessWidget {
   final String? title;
   final dynamic data;
-  const ItemDetails({Key? key, this.title, this.data}) : super(key: key);
-
+  ItemDetails({Key? key, this.title, this.data}) : super(key: key);
+  final controller = Get.find<ProductController>();
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ProductController());
     return WillPopScope(
       onWillPop: () async {
         controller.resetValue();
@@ -159,34 +158,32 @@ class ItemDetails extends StatelessWidget {
                                 ),
                                 Row(
                                   children: List.generate(
-                                      data['p_color'].length,
-                                      (index) => Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              VxBox()
-                                                  .size(40, 40)
-                                                  .roundedFull
-                                                  .color(Color(data['p_color']
-                                                          [index])
-                                                      .withOpacity(1.0))
-                                                  .margin(const EdgeInsets
-                                                      .symmetric(horizontal: 4))
-                                                  .make()
-                                                  .onTap(() {
-                                                controller
-                                                    .chageColorIndex(index);
-                                              }),
-                                              Visibility(
-                                                  visible: index ==
-                                                      controller
-                                                          .colorIndex.value,
-                                                  child: const Icon(
-                                                    Icons.done_outline,
-                                                    color: Colors.white,
-                                                  ))
-                                            ],
-                                          )),
-                                )
+                                    data['p_color'].length,
+                                    (index) => Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        VxBox()
+                                            .size(40, 40)
+                                            .roundedFull
+                                            .color(Color(data['p_color'][index])
+                                                .withOpacity(1.0))
+                                            .margin(const EdgeInsets.symmetric(
+                                                horizontal: 4))
+                                            .make()
+                                            .onTap(() {
+                                          controller.chageColorIndex(index);
+                                        }),
+                                        Visibility(
+                                            visible: index ==
+                                                controller.colorIndex.value,
+                                            child: const Icon(
+                                              Icons.done_outline,
+                                              color: Colors.white,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ).box.padding(const EdgeInsets.all(8)).make(),
                             Row(

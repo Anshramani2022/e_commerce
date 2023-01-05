@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import 'component/cart_controller.dart';
 
 class ShippingDetails extends StatelessWidget {
-  const ShippingDetails({Key? key}) : super(key: key);
+  ShippingDetails({Key? key}) : super(key: key);
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<CartController>();
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
@@ -35,7 +35,7 @@ class ShippingDetails extends StatelessWidget {
                   controller.phoneController.text.isEmpty) {
                 VxToast.show(context, msg: "Please Fill The Form");
               } else {
-                Get.to(() => const PaymentMehtods());
+                Get.to(() => PaymentMehtods());
               }
             },
             textColor: whiteColor),

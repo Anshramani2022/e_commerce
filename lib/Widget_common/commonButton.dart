@@ -1,6 +1,6 @@
 import 'package:emart_app/consts/consts.dart';
 
-typedef OnPress = Function();
+typedef OnPress = void Function();
 
 Widget commonButton({color, textColor, String? title, OnPress? onPress}) {
   return ElevatedButton(

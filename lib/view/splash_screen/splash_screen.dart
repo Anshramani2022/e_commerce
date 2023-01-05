@@ -1,7 +1,7 @@
 import 'package:emart_app/Widget_common/common_appLogo.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/auth_screen/login_screen.dart';
-import 'package:emart_app/view/home_Screen/home.dart';
+import 'package:emart_app/view/home_Screen/bottom_nav_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (user == null && mounted) {
           Get.offAll(() => const LoginScreen());
         } else {
-          Get.offAll(() => const Home());
+          Get.offAll(() => BottomNavScreen());
         }
       });
     });

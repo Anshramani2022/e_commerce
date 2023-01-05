@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,21 +20,18 @@ class AuthController extends GetxController {
     return userCredential;
   }
 
-  Future<UserCredential?> signupMethod(
-      {String? email, String? password, context}) async {
-    UserCredential? userCredential;
+  Future signupMethod({String? email, String? password, context}) async {
     try {
-      userCredential = await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
           email: email!, password: password!);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
-    return userCredential;
   }
 
   storeUserData({name, password, email}) async {
     DocumentReference store =
-        await firestore.collection(userController).doc(currentUser!.uid);
+        firestore.collection(userController).doc(auth.currentUser!.uid);
     store.set({
       "name": name,
       "password": password,
@@ -45,7 +44,7 @@ class AuthController extends GetxController {
     });
   }
 
-  signoutMethod(context) async {
+  signoutMethod(BuildContext context) async {
     try {
       await auth.signOut();
     } catch (e) {

@@ -6,11 +6,11 @@ import '../../../Widget_common/bg_widget.dart';
 import 'category_detail.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
+  CategoryScreen({Key? key}) : super(key: key);
 
+  final controller = Get.find<ProductController>();
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ProductController());
     return bgWidget(
         child: Scaffold(
       appBar: AppBar(

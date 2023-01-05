@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   @override
   void onInit() {
-    getUserName();
+    if (currentUser != null) {
+      getUserName();
+    }
     super.onInit();
   }
 
@@ -14,7 +16,7 @@ class HomeController extends GetxController {
   getUserName() async {
     var n = await firestore
         .collection(userController)
-        .where('id', isEqualTo: currentUser!.uid)
+        .where('id', isEqualTo: auth.currentUser!.uid)
         .get()
         .then((value) {
       if (value.docs.isNotEmpty) {

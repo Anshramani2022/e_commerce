@@ -2,16 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/commonButton.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/view/home_Screen/cart/component/cart_controller.dart';
-import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:emart_app/view/home_Screen/cart/shipping_screen.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  CartScreen({Key? key}) : super(key: key);
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(CartController());
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
@@ -108,7 +109,7 @@ class CartScreen extends StatelessWidget {
                         textColor: whiteColor,
                         title: 'Procced to Ship',
                         onPress: () {
-                          Get.to(() => const ShippingDetails());
+                          Get.to(() => ShippingDetails());
                         },
                       ))
                 ],

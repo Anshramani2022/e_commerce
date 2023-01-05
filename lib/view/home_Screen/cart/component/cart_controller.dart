@@ -38,7 +38,6 @@ class CartController extends GetxController {
       'order_by': currentUser!.uid,
       'order_date': FieldValue.serverTimestamp(),
       'order_code': "233981237",
-      'order_by_name': Get.find<HomeController>().userName,
       'order_by_email': currentUser!.email,
       'order_by_address': addressController.text,
       'order_by_state': stateController.text,

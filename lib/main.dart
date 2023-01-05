@@ -1,5 +1,9 @@
-import 'package:emart_app/controller/home_controlller.dart';
-import 'package:emart_app/view/home_Screen/cart/cart.dart';
+import 'dart:developer';
+
+import 'package:emart_app/controller/auth_controller.dart';
+import 'package:emart_app/controller/product_controller.dart';
+import 'package:emart_app/controller/profile_controller.dart';
+import 'package:emart_app/view/home_Screen/cart/component/cart_controller.dart';
 import 'package:emart_app/view/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
@@ -36,5 +40,9 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  HomeController controller = Get.put(HomeController());
+  // HomeController controller = Get.put(HomeController());
+  AuthController authController = Get.put(AuthController());
+  ProductController productController = Get.put(ProductController());
+  ProfileController profileController = Get.put(ProfileController());
+  CartController cartController = Get.put(CartController());
 }

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/model/category_model.dart';
-import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,8 @@ class ProductController extends GetxController {
   var isFav = false.obs;
   getSubCategory(title) async {
     subCat.clear();
-    var data = await rootBundle.loadString("lib/services/category_model.json");
+    var data = await rootBundle
+        .loadString("lib/firebase/services/category_model.json");
     var decode = categoryModelFromJson(data);
     var filter =
         decode.categories.where((element) => element.name == title).toList();

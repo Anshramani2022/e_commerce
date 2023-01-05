@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/bg_widget.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/product_controller.dart';
-import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:emart_app/view/home_Screen/category/item_detail.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -31,7 +31,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
     }
   }
 
-  var controller = Get.find<ProductController>();
+  final controller = Get.find<ProductController>();
 
   dynamic productmethod;
   @override

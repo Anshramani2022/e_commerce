@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/Widget_common/home_button.dart';
 import 'package:emart_app/consts/consts.dart';
+import 'package:emart_app/controller/auth_controller.dart';
 import 'package:emart_app/controller/home_controlller.dart';
-import 'package:emart_app/controller/product_controller.dart';
-import 'package:emart_app/services/firestore_services.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:emart_app/view/home_Screen/category/item_detail.dart';
 import 'package:emart_app/view/home_Screen/home_screen/search_screen.dart';
 import 'package:get/get.dart';
@@ -13,16 +11,15 @@ import 'package:get/get.dart';
 import '../component/featured_component.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  HomeController controller = Get.put(HomeController());
+  final authController = Get.find<AuthController>();
+  // final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => ProductController());
-    var controller = Get.find<HomeController>();
-
-    return Container(
-      padding: const EdgeInsets.all(13),
-      color: lightGrey,
+    return Material(
       child: SafeArea(
         child: Column(
           children: [

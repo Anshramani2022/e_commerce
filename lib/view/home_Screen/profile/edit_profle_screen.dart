@@ -11,12 +11,11 @@ import '../../../controller/profile_controller.dart';
 
 class EditScreen extends StatelessWidget {
   final dynamic data;
-  const EditScreen({Key? key, this.data}) : super(key: key);
+  EditScreen({Key? key, this.data}) : super(key: key);
+  final controller = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProfileController>();
-
     return bgWidget(
         child: Scaffold(
       appBar: AppBar(),
@@ -111,7 +110,7 @@ class EditScreen extends StatelessWidget {
                                   password: controller.newpassController.text,
                                   name: controller.nameController.text);
                               VxToast.show(context, msg: "Profile Updated");
-                              Get.offAll(() => const AccountScreen());
+                              Get.offAll(() => AccountScreen());
                             } else {
                               VxToast.show(context, msg: "Wrong Old password");
                               controller.isLoading(false);

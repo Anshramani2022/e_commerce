@@ -2,6 +2,7 @@ import 'package:emart_app/consts/consts.dart';
 
 class FireStoreServices {
   //get Users Data
+
   static getUser(uid) {
     return firestore
         .collection(userController)
@@ -18,10 +19,10 @@ class FireStoreServices {
   }
 
   //add to cart
-  static getcart(uid) {
+  static getcart(email) {
     return firestore
         .collection(cartCollection)
-        .where('added_by', isEqualTo: uid)
+        .where('added_by', isEqualTo: email)
         .snapshots();
   }
 
