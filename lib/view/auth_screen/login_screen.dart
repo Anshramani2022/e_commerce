@@ -28,7 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return bgWidget(
         child: Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
