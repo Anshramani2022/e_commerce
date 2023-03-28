@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emart_app/consts/consts.dart';
 import 'package:emart_app/controller/product_controller.dart';
+import 'package:emart_app/firebase/services/firestore_services.dart';
 import 'package:emart_app/view/chat_screen/chat_screen.dart';
 import 'package:get/get.dart';
 
@@ -283,42 +285,71 @@ class ItemDetails extends StatelessWidget {
                           .make(),
                       10.heightBox,
                       SingleChildScrollView(
-                        //copy this widget from home screen featured Product
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                              6,
-                              (index) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        imgP1,
-                                        width: 150,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      10.heightBox,
-                                      "Laptop 4GB/512ssd"
-                                          .text
-                                          .color(darkFontGrey)
-                                          .fontFamily(semibold)
-                                          .make(),
-                                      10.heightBox,
-                                      "\$600"
-                                          .text
-                                          .color(redColor)
-                                          .fontFamily(bold)
-                                          .size(16)
-                                          .make()
-                                    ],
-                                  )
-                                      .box
-                                      .white
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 4))
-                                      .roundedSM
-                                      .padding(const EdgeInsets.all(8))
-                                      .make()),
+                        child: StreamBuilder(
+                          stream: FireStoreServices.getFeaturedProduct(),
+                          builder:
+                              (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation(redColor),
+                                ),
+                              );
+                            } else if (snapshot.data!.docs.isEmpty) {
+                              return "No Featured Product"
+                                  .text
+                                  .white
+                                  .makeCentered();
+                            } else {
+                              var featureddata = snapshot.data!.docs;
+                              return Row(
+                                children: List.generate(
+                                    featureddata.length,
+                                    (index) => Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Image.network(
+                                              featureddata[index]['p_images']
+                                                  [0],
+                                              width: 150,
+                                              height: 130,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            10.heightBox,
+                                            "${featureddata[index]['p_name']}"
+                                                .text
+                                                .color(darkFontGrey)
+                                                .fontFamily(semibold)
+                                                .make(),
+                                            10.heightBox,
+                                            "${featureddata[index]['p_prices']}"
+                                                .numCurrency
+                                                .text
+                                                .color(redColor)
+                                                .fontFamily(bold)
+                                                .size(16)
+                                                .make()
+                                          ],
+                                        )
+                                            .box
+                                            .white
+                                            .margin(const EdgeInsets.symmetric(
+                                                horizontal: 4))
+                                            .roundedSM
+                                            .padding(const EdgeInsets.all(8))
+                                            .make()
+                                            .onTap(() {
+                                          Get.to(() => ItemDetails(
+                                                title:
+                                                    "${featureddata[index]['p_name']}",
+                                                data: featureddata[index],
+                                              ));
+                                        })),
+                              );
+                            }
+                          },
                         ),
                       )
                     ],

@@ -19,7 +19,7 @@ class OrderDetailscreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               OrderStatus(
@@ -42,7 +42,7 @@ class OrderDetailscreen extends StatelessWidget {
                   icon: Icons.done_all_rounded,
                   title: "Order Delivered",
                   showDone: data['order_delivered']),
-              Divider(
+              const Divider(
                 thickness: 3,
               ),
               Column(
@@ -73,7 +73,8 @@ class OrderDetailscreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             "Shipping Address".text.fontFamily(semibold).make(),
-                            "${data['order_by_name']}".text.make(),
+                            // Todo: this one remove
+                            // "${data['order_by_name']}".text.make(),
                             "${data['order_by_email']}".text.make(),
                             "${data['order_by_address']}".text.make(),
                             "${data['order_by_city']}".text.make(),

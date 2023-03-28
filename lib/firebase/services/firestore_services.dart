@@ -110,7 +110,7 @@ class FireStoreServices {
   static subCategoryProduct(title) {
     return firestore
         .collection(productCollection)
-        .where('p_subcategory', isEqualTo: title)
+        .where('p_subcategories', isEqualTo: title)
         .snapshots();
   }
 }

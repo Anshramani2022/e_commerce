@@ -28,8 +28,7 @@
       "name" : "Automobile",
       "subcategory": [
         "Cars",
-        "Bikes",
-        "Truck"
+        "Bikes"
       ]
     },
     {
